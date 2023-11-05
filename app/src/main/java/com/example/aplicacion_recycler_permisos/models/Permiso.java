@@ -2,12 +2,22 @@ package com.example.aplicacion_recycler_permisos.models;
 
 public class Permiso {
 
+    int id;
     String nombre;
     String descripcion;
 
-    public Permiso(String nombre, String descripcion) {
+    public Permiso(int id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

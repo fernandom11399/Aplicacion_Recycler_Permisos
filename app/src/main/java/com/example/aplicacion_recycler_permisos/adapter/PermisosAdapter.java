@@ -1,12 +1,21 @@
 package com.example.aplicacion_recycler_permisos.adapter;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.content.Context;
+import android.app.Activity;
+
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aplicacion_recycler_permisos.R;
@@ -32,7 +41,8 @@ public class PermisosAdapter extends RecyclerView.Adapter<PermisosAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PermisosAdapter.ViewHolder holder, int position) {
-
+        Permiso p = LP.get(position);
+        holder.setData(p);
     }
 
     @Override
@@ -57,7 +67,15 @@ public class PermisosAdapter extends RecyclerView.Adapter<PermisosAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            swPermiso.getContext();
+            Context context = view.getContext();
+            if (context instanceof Activity) {
+                Activity activity = (Activity) context;
+                if (swPermiso.isChecked()) {
+                    if (ContextCompat.checkSelfPermission(context, PermisoH.getNombre()) == PackageManager.PERMISSION_DENIED) {
+                        ActivityCompat.requestPermissions(activity, new String[]{PermisoH.getNombre()}, PermisoH.getId());
+                    }
+                }
+            }
         }
     }
 }
