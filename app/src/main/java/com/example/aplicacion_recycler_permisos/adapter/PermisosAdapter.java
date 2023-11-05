@@ -40,7 +40,7 @@ public class PermisosAdapter extends RecyclerView.Adapter<PermisosAdapter.ViewHo
         return LP.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txPermiso;
         Switch swPermiso;
         Permiso PermisoH;
@@ -52,12 +52,19 @@ public class PermisosAdapter extends RecyclerView.Adapter<PermisosAdapter.ViewHo
         public void setData(Permiso permiso){
             this.PermisoH = permiso;
             txPermiso.setText(permiso.getDescripcion());
-            swPermiso.setOnClickListener(this);
+            swPermiso.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (swPermiso.isChecked()) {
+                        // El Switch está en la posición OFF
+                    } else {
+                        // El Switch está en la posición OFF
+                    }
+                }
+            });
+
         }
 
-        @Override
-        public void onClick(View view) {
-            swPermiso.getContext();
-        }
+
     }
 }
