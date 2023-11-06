@@ -67,6 +67,7 @@ public class PermisosAdapter extends RecyclerView.Adapter<PermisosAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
+//            No se subeeeeeeeeeeeeeeee
             Context context = view.getContext();
             if (context instanceof Activity) {
                 Activity activity = (Activity) context;
